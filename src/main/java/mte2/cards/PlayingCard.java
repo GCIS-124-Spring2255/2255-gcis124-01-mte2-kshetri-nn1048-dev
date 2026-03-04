@@ -4,7 +4,8 @@
 
 package mte2.cards;
 
-public class PlayingCard /* implements ... */ {
+// public class PlayingCard implements Comparable<E> {
+public class PlayingCard implements Comparable<PlayingCard> {    
     
     private final Suit suit;  // The suit of this card.
     private final Rank rank;  // The rank of this card.
@@ -22,23 +23,28 @@ public class PlayingCard /* implements ... */ {
     @Override
     public String toString() {    return rank + " of " + suit;    }
 
-    // compareTo() method
-    // ... 
-    // ...
+    @Override
+    public int compareTo(PlayingCard other) {
+        PlayingCard c1 = PlayingCard(this.suit,this.rank);
+        PlayingCard c2 = PlayingCard(other.suit,other.rank);
+        RankComparator rc = RankComparator(c1,c2);
+        return rc.compare(c1, c2);
+    }
+    
 
     public static void main(String[] args) {
         
-        // java.util.List<PlayingCard> cards = new java.util.LinkedList<>();
-        // cards.add(new PlayingCard(Suit.HEARTS, Rank.FIVE));
-        // cards.add(new PlayingCard(Suit.SPADES, Rank.TEN));
-        // cards.add(new PlayingCard(Suit.CLUBS, Rank.QUEEN));
+        java.util.List<PlayingCard> cards = new java.util.LinkedList<>();
+        cards.add(new PlayingCard(Suit.HEARTS, Rank.FIVE));
+        cards.add(new PlayingCard(Suit.SPADES, Rank.TEN));
+        cards.add(new PlayingCard(Suit.CLUBS, Rank.QUEEN));
         
-        // cards.add(new PlayingCard(Suit.DIAMONDS, Rank.TWO));
-        // cards.add(new PlayingCard(Suit.HEARTS, Rank.ACE));
-        // cards.add(new PlayingCard(Suit.SPADES, Rank.FOUR));
-        // cards.add(new PlayingCard(Suit.CLUBS, Rank.KING));
+        cards.add(new PlayingCard(Suit.DIAMONDS, Rank.TWO));
+        cards.add(new PlayingCard(Suit.HEARTS, Rank.ACE));
+        cards.add(new PlayingCard(Suit.SPADES, Rank.FOUR));
+        cards.add(new PlayingCard(Suit.CLUBS, Rank.KING));
 
-        // java.util.Collections.sort(cards);
-        // System.out.println(cards);
+        //java.util.Collections.sort(cards);
+        System.out.println(cards);
     }
 }
